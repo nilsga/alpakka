@@ -51,8 +51,10 @@ class ParquetSinkSpec extends WordSpec with Matchers with ScalaFutures with Befo
       val tmpDir = Files.createTempDirectory("parquet-spec-").toFile
       tmpDir.deleteOnExit()
       val baseDir = s"${tmpDir.toURI}/basedir"
+      // #basic-settings
       val settings = ParquetSettings(baseDir, 10, 10 seconds)
         .withWriteMode(Mode.CREATE)
+      // #basic-settings
       val fileName = UUID.randomUUID().toString
       val plainSink = ParquetSink[DataRecord](settings, fileName)
 
